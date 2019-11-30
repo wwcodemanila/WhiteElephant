@@ -10,13 +10,13 @@ function showRefreshButton(text) {
 function seedStorage() {
   let n = Number(prompt("How many participants are there?"));
 
-  if (isNaN(n)) {
-    seedStorage();
-  } else {
+  if (Number.isInteger(n) && n > 0) {
     let shuffled = _.shuffle(Array.from(Array(n).keys()));
     storage.setItem("shuffled", JSON.stringify(shuffled));
     storage.setItem("index", 0);
     showRefreshButton("Let's go!");
+  } else {
+    seedStorage();
   }
 }
 
